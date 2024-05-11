@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apartments</title> 
+    <style>
+       body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm00NTYtMDExZC5qcGc.jpg'); /* Replace with your actual image URL */
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh;
+            color: #ffffff;
+            flex-direction: column; 
+        }
+
+        h1 {
+            background-color: #5c67f2; 
+            color: #ffffff; 
+            text-shadow: none; 
+            padding: 10px 20px; 
+            border-radius: 8px; 
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+            margin-bottom: 20px; 
+        }
+
+        form {
+            background: rgba(255, 255, 255, 0.8); 
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px; 
+        }
+
+        label {
+            font-size: 16px;
+            color: #333;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box; 
+            margin-top: 8px;
+            background: rgba(255, 255, 255, 0.9); 
+            color: #333;
+        }
+
+        button {
+            background-color: #5c67f2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 12px;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: #4a54e1;
+        }
+        .apartment-listings { 
+            background: rgba(255, 255, 255, 0.8); 
+            color: black;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 50%; 
+            margin-bottom: 20px;
+        }
+        .apartment-listings h2 { 
+            margin-top: 0;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Apartments</h1> 
+    {% if generated_listings %}
+        <div class="apartment-listings">
+            {% for listing in generated_listings %}
+                <h2>{{ listing.location }}, {{ listing.bedrooms }} beds, {{ listing.bathrooms }} baths, ${{ listing.price }}</h2>
+                <p>{{ listing.description }}</p>
+                {% if shared_housing %}
+                    <p>Current Number of tenants: {{ listing.current_tenants }}</p>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No listings found or an error occurred: {{ error|default:"No error message." }}</p>
+    {% endif %}
+    <a href="{% url 'gemini_view' %}">Back</a>
+</body>
+</html>

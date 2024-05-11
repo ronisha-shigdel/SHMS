@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ask a Question</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('https://media.equityapartments.com/images/c_crop,x_0,y_0,w_1920,h_1080/c_fill,w_1920,h_1080/q_auto,f_auto/4291-8/remy-apartments-swimming-pool'); /* Replace with your actual image URL */
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center; /* Centers content horizontally */
+            align-items: center; /* Centers content vertically */
+            height: 100vh;
+            color: #ffffff;
+            flex-direction: column; /* Aligns content in a column (vertical alignment) */
+        }
+
+        h1 {
+            background-color: #5c67f2; /* Vibrant blue background */
+            color: #ffffff; /* White text */
+            text-shadow: none; /* No text shadow for better clarity */
+            padding: 10px 20px; /* Padding around the text */
+            border-radius: 8px; /* Rounded corners for the background */
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Optional: adds shadow for 3D effect */
+            margin-bottom: 20px; /* Margin at the bottom for spacing */
+        }
+
+        form {
+            background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px; /* Fixed width for the form */
+        }
+
+        label {
+            font-size: 16px;
+            color: #333;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box; /* Prevents the padding from affecting the width */
+            margin-top: 8px;
+            background: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
+            color: #333;
+        }
+
+        button {
+            background-color: #5c67f2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 12px;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: #4a54e1;
+        }
+    </style>
+</head>
+<body>
+    <h1>What kind of housing do you want?</h1>
+    <form method="post">
+        {% csrf_token %}
+        <input type="hidden" name="csrf_token" value="YOUR_CSRF_TOKEN_HERE">
+        <br>
+        <textarea id="user_text" name="user_text" rows="4" cols="50"></textarea>
+        <br>
+
+        <div class="query-input">
+            <input type="checkbox" name="shared_housing1" id="shared_housing1">
+            <label for="shared_housing1">Interested in shared housing?</label>
+        </div>
+        <button type="submit">Show listings</button>
+    </form>
+    
+</body>
+</html>
